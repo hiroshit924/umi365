@@ -133,5 +133,7 @@
 			</div>
 		</div>
 	</section>
+
+	<?php get_template_part( 'template-parts/company-registration' ); ?>
 </main>
 <?php get_footer(); ?>

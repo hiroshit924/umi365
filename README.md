@@ -4,7 +4,7 @@
 
 ## テーマのダウンロード
 
-[WordPressテーマ ZIP](https://github.com/hiroshit924/umi365/raw/refs/heads/main/downloads/umimori365-theme-1.1.2.zip) をダウンロードして、WordPress管理画面の **外観 → テーマ → 新しいテーマを追加 → テーマのアップロード** からインストールできます。
+[WordPressテーマ ZIP](https://github.com/hiroshit924/umi365/raw/refs/heads/main/downloads/umimori365-theme-1.1.3.zip) をダウンロードして、WordPress管理画面の **外観 → テーマ → 新しいテーマを追加 → テーマのアップロード** からインストールできます。
 
 ## ローカルで起動
 
@@ -35,7 +35,7 @@ Docker Compose、curl、OpenSSL が必要です。
 
 ## 事業番号の表示
 
-フッターの運営会社の下に「一般不定期航路事業者登録番号 関東一不 第65号」を表示します。番号が変更された場合は、**外観 → カスタマイズ → 運営会社・事業番号** で更新できます。
+「運営会社・事業登録」欄とフッターに「関東一不 第65号」を表示します。番号が変更された場合は、**外観 → カスタマイズ → 運営会社・事業番号** で更新できます。
 
 ## 公開後の検索設定
 

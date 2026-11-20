@@ -66,10 +66,18 @@ add_action( 'wp_head', static function () {
 	}
 
 	$organization = array(
-		'@type' => 'Organization',
-		'@id'   => $organization_id,
-		'name'  => '株式会社NEXUS',
-		'email' => 'info@c365.jp',
+		'@type'     => 'Organization',
+		'@id'       => $organization_id,
+		'name'      => '株式会社NEXUS',
+		'email'     => 'info@c365.jp',
+		'telephone' => '+81-45-297-6375',
+		'address'   => array(
+			'@type'           => 'PostalAddress',
+			'addressCountry'  => 'JP',
+			'addressRegion'   => '神奈川県',
+			'addressLocality' => '横浜市中区',
+			'streetAddress'   => '福富町西通44-2 Speranza Sakuragicho 1F',
+		),
 	);
 	if ( '' !== $registration ) {
 		$organization['identifier'] = array(
