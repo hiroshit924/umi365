@@ -3,9 +3,6 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php if ( is_front_page() ) : ?>
-		<meta name="description" content="海守365は旅客定員1〜12名の小型船舶を対象に、一般不定期航路事業の登録手続き、安全運航管理、現地対応を支援します。">
-	<?php endif; ?>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

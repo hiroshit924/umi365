@@ -4,7 +4,7 @@
 		<div class="container hero-inner">
 			<p class="eyebrow hero-label">小型船舶 安全運航管理サービス</p>
 			<h1 id="hero-title">海の事業を、<br>安全運航から支える。</h1>
-			<p class="hero-copy">一般不定期航路事業の登録手続きから、日々の運航管理まで。<br class="desktop-break">海守365が、小型船舶で人を運ぶ事業者をサポートします。</p>
+			<p class="hero-copy">海守365は、旅客定員1〜12名の小型船舶向け運航管理サービスです。<br class="desktop-break">一般不定期航路事業の登録手続きから、日々の安全運航まで支援します。</p>
 			<div class="hero-actions">
 				<a class="button button-primary" href="#contact">利用について相談する <span aria-hidden="true">↗</span></a>
 				<a class="button button-outline" href="#service">サービスを見る <span aria-hidden="true">↓</span></a>
@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="section-intro">
 				<div><p class="eyebrow">SERVICE</p><h2 id="service-title">海守365ができること</h2></div>
-				<p>事業を始める準備から日々の運航まで、<br class="desktop-break">海事代理士や関係先と連携して支援します。</p>
+				<p>株式会社NEXUSが、事業を始める準備から日々の運航まで、海事代理士や関係先と連携して支援します。</p>
 			</div>
 			<div class="service-grid">
 				<article class="service-card">
@@ -43,6 +43,24 @@
 					<p>事業開始前の船舶点検や整備、必要備品の手配、桟橋利用の申請、旅客傷害賠償責任保険の手配を支援します。</p>
 				</article>
 			</div>
+
+			<figure class="service-diagram" aria-labelledby="diagram-title">
+				<figcaption><h3 id="diagram-title">海守365の運航支援の仕組み</h3></figcaption>
+				<ol class="diagram-roles">
+					<li>
+						<h4>小型船舶の事業者・オーナー</h4>
+						<p>船舶や運航計画を共有し、運航前後の報告や緊急時の連絡を行います。</p>
+					</li>
+					<li>
+						<h4>海守365 運航管理センター</h4>
+						<p>登録手続きや船舶点検を支援し、日々の海況確認・運航可否の連絡・緊急時対応を担います。</p>
+					</li>
+					<li>
+						<h4>行政・海事代理士・保険会社など</h4>
+						<p>海守365が関係先と連携し、必要な申請・報告や保険の手配を進めます。</p>
+					</li>
+				</ol>
+			</figure>
 		</div>
 	</section>
 
@@ -79,6 +97,30 @@
 				<li><h3>支援内容をご案内</h3><p>事業計画を伺い、必要な手続き、支援範囲、費用とスケジュールをご案内します。</p></li>
 				<li><h3>体制づくり・運航開始</h3><p>契約後、船舶の点検や書類の準備を進め、運航開始後も日々の管理を支援します。</p></li>
 			</ol>
+		</div>
+	</section>
+
+	<section class="section faq" id="faq" aria-labelledby="faq-title">
+		<div class="container">
+			<h2 id="faq-title">よくある質問</h2>
+			<div class="faq-list">
+				<div>
+					<h3>海守365はどんな事業者が利用できますか？</h3>
+					<p>旅客定員1〜12名の小型船舶で人を運ぶ事業者や、これから開業予定の方が対象です。海上タクシー、遊覧クルーズ、イルカウォッチングなどの運航についてご相談いただけます。</p>
+				</div>
+				<div>
+					<h3>一般不定期航路事業の登録に向けて、何を相談できますか？</h3>
+					<p>登録申請、安全管理規程や法定書類の作成、事業開始前の船舶点検についてご相談いただけます。制度の概要は<a href="#background">事業の背景と公式資料</a>をご覧ください。</p>
+				</div>
+				<div>
+					<h3>運航開始後はどんな支援がありますか？</h3>
+					<p>運航管理センターが24時間365日、海況・気象の確認、運航可否の連絡、運航前後の報告、緊急時の連絡や手配に対応します。</p>
+				</div>
+				<div>
+					<h3>初回相談では何を伝えればよいですか？</h3>
+					<p>運航予定エリア、船舶、開業時期など、分かる範囲で<a href="#contact">無料相談フォーム</a>からお知らせください。事業計画を伺い、支援範囲・費用・スケジュールをご案内します。</p>
+				</div>
+			</div>
 		</div>
 	</section>
 
