@@ -18,8 +18,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      mailpit:
-        condition: service_started
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
@@ -33,11 +31,6 @@ services:
     volumes:
       - wordpress:/var/www/html
       - ./wp-content/themes/umimori365:/var/www/html/wp-content/themes/umimori365:ro
-      - ./scripts/local-mail.php:/var/www/html/wp-content/mu-plugins/umimori-local-mail.php:ro
-  mailpit:
-    image: axllent/mailpit:v1.27
-    ports:
-      - "127.0.0.1:${MAILPIT_PORT:-8025}:8025"
 
 volumes:
   wordpress:

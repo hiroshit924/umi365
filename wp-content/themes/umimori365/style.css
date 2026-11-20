@@ -1,7 +1,7 @@
 /*
 Theme Name: 海守365
 Description: 小型船舶の安全運航管理サービス 海守365の公式サイト用テーマ。
-Version: 1.1.4
+Version: 1.2.0
 Text Domain: umimori365
 */
 :root {
@@ -212,6 +212,7 @@ h3 { font-size: 21px; line-height: 1.5; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 18px; }
 .form-grid > p { min-width: 0; }
 .form-wide { grid-column: 1 / -1; }
+.contact-status { padding: 9px 12px; border-left: 3px solid var(--teal); background: #eaf0ec; }
 .form-grid label { font-size: 14px; font-weight: 700; }
 .form-grid input:not([type=submit]), .form-grid textarea { width: 100%; font: inherit; font-weight: 400; color: var(--navy); padding: 9px 10px; border: 1px solid #8b9f9c; background: #fbfcfa; border-radius: 3px; margin-top: 4px; }
 .form-grid textarea { min-height: 116px; resize: vertical; }

@@ -9,7 +9,6 @@ fi
 
 # Apache runs as www-data and must be able to read the source bind mounts.
 chmod -R a+rX wp-content/themes/umimori365
-chmod a+r scripts/local-mail.php
 
 docker compose up -d --wait
 work_dir=$(mktemp -d)
@@ -41,21 +40,7 @@ if ! wp core is-installed; then
 	wp rewrite structure '/%postname%/'
 fi
 
-if ! wp plugin is-installed contact-form-7; then
-	# Use the plugin author's tagged release when the registry is unavailable.
-	curl --fail --silent --show-error --location --retry 2 --max-time 90 \
-		https://codeload.github.com/rocklobster-in/contact-form-7/tar.gz/refs/tags/v6.2.5 \
-		-o "$work_dir/contact-form-7.tgz"
-	mkdir "$work_dir/contact-form-7"
-	tar -xzf "$work_dir/contact-form-7.tgz" -C "$work_dir/contact-form-7" --strip-components=1
-	chmod -R a+rX "$work_dir/contact-form-7"
-	docker compose cp "$work_dir/contact-form-7" wordpress:/var/www/html/wp-content/plugins/
-fi
-
-wp plugin activate contact-form-7
 wp theme activate umimori365
-docker compose cp scripts/provision-site.php wordpress:/tmp/umimori-provision-site.php
-wp eval-file /tmp/umimori-provision-site.php
 site_url=$(wp option get home)
 curl --fail --silent --show-error --max-time 15 --output /dev/null "$site_url/"
 printf '%s\n' "$site_url"

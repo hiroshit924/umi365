@@ -7,6 +7,8 @@ defined( 'ABSPATH' ) || exit;
 const UMIMORI365_ROUTE_REGISTRATION = '関東一不 第65号';
 
 require_once __DIR__ . '/inc/seo.php';
+require_once __DIR__ . '/inc/microsoft365.php';
+require_once __DIR__ . '/inc/contact.php';
 
 add_action( 'after_setup_theme', static function () {
 	add_theme_support( 'title-tag' );

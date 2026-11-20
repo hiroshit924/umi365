@@ -118,14 +118,7 @@
 			</div>
 			<div class="contact-panel">
 				<h3>利用相談・お問い合わせ</h3>
-				<?php
-				$form_id = (int) get_option( 'umimori365_contact_form_id' );
-				if ( function_exists( 'wpcf7_contact_form' ) && $form_id && wpcf7_contact_form( $form_id ) ) {
-					echo do_shortcode( sprintf( '[contact-form-7 id="%d"]', $form_id ) );
-				} else {
-					echo '<p>ただいま問い合わせフォームをご利用いただけません。時間をおいて再度お試しください。</p>';
-				}
-				?>
+				<?php get_template_part( 'template-parts/contact-form' ); ?>
 				<section id="privacy" class="privacy" aria-labelledby="privacy-title">
 					<h4 id="privacy-title">個人情報の取り扱い</h4>
 					<p>お問い合わせ時にお預かりする情報は、ご相談への回答と関連するご連絡のために使用します。</p>
