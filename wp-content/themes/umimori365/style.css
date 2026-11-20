@@ -1,7 +1,7 @@
 /*
 Theme Name: 海守365
 Description: 小型船舶の安全運航管理サービス 海守365の公式サイト用テーマ。
-Version: 1.1.1
+Version: 1.1.2
 Text Domain: umimori365
 */
 :root {
@@ -74,12 +74,17 @@ h3 { font-size: 21px; line-height: 1.5; }
 .service-icon { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 50%; color: var(--teal); background: #e9f1eb; font-size: 24px; margin-bottom: 23px; }
 .service-card p, .flow-grid p { font-size: 15px; margin-top: 12px; }
 .service-diagram {
-	margin: 32px 0 0;
-	padding: clamp(18px, 3vw, 34px);
-	background: #eaf0ec;
-	border-radius: 6px;
+	--diagram-route: #43857e;
+	margin: 36px 0 0;
+	padding: clamp(18px, 3.25vw, 40px);
+	border: 1px solid #cfded6;
+	border-radius: 26px;
+	background:
+		radial-gradient(circle at 1px 1px, #46786b1c 1px, transparent 1.15px) 0 0 / 16px 16px,
+		linear-gradient(137deg, #f3f8f2, #e4efeb);
 }
-.service-diagram figcaption p { color: var(--muted); margin-top: 6px; }
+.service-diagram figcaption h3 { font-size: clamp(21px, 2.3vw, 30px); }
+.service-diagram figcaption p { max-width: 55em; margin-top: 8px; color: var(--muted); }
 .operations-map {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1.75fr) minmax(0, 1fr);
@@ -88,28 +93,100 @@ h3 { font-size: 21px; line-height: 1.5; }
 		"emergency center passengers"
 		"emergency exchange passengers"
 		". owner partners";
-	gap: 23px;
+	gap: 32px;
 	align-items: start;
-	margin-top: 22px;
+	margin-top: 26px;
 }
-.operations-node { padding: 15px; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
-.operations-node h4 { line-height: 1.5; }
-.operations-node p, .operations-node dl { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
-.operations-node dt { font-weight: 700; }
+.operations-node {
+	position: relative;
+	padding: clamp(14px, 1.45vw, 20px);
+	border: 1px solid #d5e3dc;
+	border-radius: 18px;
+	background: #fff;
+	box-shadow: 0 5px 16px #143f3520;
+}
+.operations-node h4 { display: flex; align-items: center; gap: 10px; line-height: 1.45; }
+.operations-phrase { white-space: nowrap; }
+.operations-icon {
+	display: grid;
+	flex: 0 0 40px;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #e7f3ed;
+}
+.operations-icon img { width: 24px; height: 24px; }
+.operations-node p, .operations-node dl { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+.operations-node dt { color: var(--teal); font-weight: 700; }
 .operations-node dd { margin: 0; }
 .operations-node dl div + div { margin-top: 8px; }
-.operations-center { grid-area: center; position: relative; background: var(--navy); color: #fff; }
-.operations-center p { color: #d7e6e2; }
+.operations-center {
+	grid-area: center;
+	border-color: #173b44;
+	background:
+		radial-gradient(circle at 97% -10%, transparent 55px, #ffffff0e 56px 57px, transparent 58px 74px, #ffffff0e 75px 76px, transparent 77px 93px, #ffffff0e 94px 95px, transparent 96px),
+		linear-gradient(118deg, #102d3a, #17494c);
+	color: #fff;
+	box-shadow: 0 8px 22px #102d3a30;
+}
+.operations-center h4 { font-size: 18px; }
+.operations-center .operations-icon { background: #f0ce8121; box-shadow: inset 0 0 0 1px #f0ce8140; }
+.operations-center p { color: #e1eeeb; }
 .operations-regulator { grid-area: regulator; align-self: end; }
 .operations-emergency { grid-area: emergency; }
 .operations-advisor { grid-area: advisor; }
-.operations-owner { grid-area: owner; border-color: var(--teal); }
+.operations-owner { grid-area: owner; border-color: #7da89a; }
 .operations-passengers { grid-area: passengers; }
 .operations-partners { grid-area: partners; }
-.operations-exchange { grid-area: exchange; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.operations-exchange div { border-top: 2px solid var(--teal); padding: 10px 8px; background: #f9fbfa; }
-.operations-exchange h4 { font-size: 14px; line-height: 1.5; color: var(--teal); }
-.operations-exchange ul { padding-left: 1.2em; margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+.operations-exchange {
+	grid-area: exchange;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+.operations-exchange > div {
+	padding: 13px;
+	border: 1px solid #c9ded2;
+	border-radius: 15px;
+	background: #f5fbf8;
+}
+.operations-exchange > div:last-child { border-color: #e7dcc1; background: #fffbf0; }
+.operations-exchange h4 { display: flex; align-items: center; gap: 7px; font-size: 14px; line-height: 1.45; color: var(--teal); }
+.operations-exchange > div:last-child h4 { color: #775522; }
+.operations-exchange ul { padding-left: 1.2em; margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+.operations-exchange li + li { margin-top: 2px; }
+.operations-direction {
+	display: grid;
+	position: relative;
+	flex: 0 0 24px;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	margin-left: auto;
+	border-radius: 50%;
+	background: #dfefe7;
+}
+.operations-direction-down { background: #f4e8ca; transform: rotate(180deg); }
+.operations-direction::before {
+	content: "";
+	position: absolute;
+	top: 7px;
+	width: 1.5px;
+	height: 11px;
+	border-radius: 2px;
+	background: currentColor;
+}
+.operations-direction::after {
+	content: "";
+	position: absolute;
+	top: 7px;
+	width: 7px;
+	height: 7px;
+	border-top: 1.5px solid;
+	border-left: 1.5px solid;
+	transform: rotate(45deg);
+}
 .background, .faq { background: #eaf0ec; }
 .faq-list { max-width: 820px; margin-top: 18px; }
 .faq-list > div { padding: 18px 0; border-top: 1px solid #b9cbc3; }
@@ -149,22 +226,45 @@ h3 { font-size: 21px; line-height: 1.5; }
 .operator-details > div { display: flex; flex-wrap: wrap; column-gap: 9px; }
 .operator-details dt { font-weight: 700; }
 .operator-details dd { margin: 0; overflow-wrap: anywhere; }
-@media (min-width: 901px) {
-	.operations-node { position: relative; }
-	.operations-center::before, .operations-emergency::after, .operations-passengers::before, .operations-partners::before {
+@media (min-width: 981px) {
+	.operations-center::before, .operations-center::after,
+	.operations-emergency::before, .operations-emergency::after,
+	.operations-passengers::before, .operations-passengers::after,
+	.operations-partners::before, .operations-partners::after {
 		content: "";
 		position: absolute;
+		pointer-events: none;
+	}
+	.operations-center::before {
+		top: -27px;
+		left: calc(50% - 1px);
+		height: 23px;
+		border-left: 2px dashed var(--diagram-route);
+	}
+	.operations-center::after, .operations-emergency::after,
+	.operations-passengers::after, .operations-partners::after {
 		width: 9px;
 		height: 9px;
-		border-top: 2px solid var(--teal);
-		border-left: 2px solid var(--teal);
+		border-top: 2px solid var(--diagram-route);
+		border-left: 2px solid var(--diagram-route);
+		border-radius: 1px;
 	}
-	.operations-center::before { top: -17px; left: calc(50% - 4px); transform: rotate(45deg); }
-	.operations-emergency::after, .operations-passengers::before, .operations-partners::before { top: 32px; transform: rotate(-45deg); }
-	.operations-emergency::after { right: -17px; }
-	.operations-passengers::before, .operations-partners::before { left: -17px; }
+	.operations-center::after { top: -27px; left: calc(50% - 4px); transform: rotate(45deg); }
+	.operations-emergency::before, .operations-passengers::before, .operations-partners::before {
+		top: 38px;
+		width: 22px;
+		border-top: 2px dashed var(--diagram-route);
+	}
+	.operations-emergency::before { right: -28px; }
+	.operations-passengers::before, .operations-partners::before { left: -28px; }
+	.operations-emergency::after, .operations-passengers::after, .operations-partners::after {
+		top: 35px;
+		transform: rotate(-45deg);
+	}
+	.operations-emergency::after { right: -15px; }
+	.operations-passengers::after, .operations-partners::after { left: -28px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 980px) {
 	.operations-map {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		grid-template-areas:
@@ -173,8 +273,9 @@ h3 { font-size: 21px; line-height: 1.5; }
 			"owner passengers"
 			"regulator emergency"
 			"advisor partners";
-		gap: 12px;
+		gap: 14px;
 	}
+	.operations-regulator { align-self: start; }
 }
 @media (max-width: 880px) {
 	.container { width: calc(100% - 56px); }
@@ -182,7 +283,8 @@ h3 { font-size: 21px; line-height: 1.5; }
 	.background-grid { grid-template-columns: 1.15fr 1fr; }
 }
 @media (max-width: 670px) {
-	.operations-map, .operations-exchange { display: flex; flex-direction: column; gap: 10px; }
+	.service-diagram { border-radius: 20px; }
+	.operations-map, .operations-exchange { display: flex; flex-direction: column; gap: 12px; }
 	.operations-map > *, .operations-exchange > * { width: 100%; }
 	.container { width: calc(100% - 36px); }
 	.header-inner { min-height: 66px; flex-wrap: wrap; gap: 0 13px; padding-top: 9px; }
