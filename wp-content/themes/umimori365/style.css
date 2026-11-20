@@ -1,0 +1,149 @@
+/*
+Theme Name: 海守365
+Description: 小型船舶の安全運航管理サービス 海守365の公式サイト用テーマ。
+Version: 1.0.4
+Text Domain: umimori365
+*/
+:root {
+	--navy: #102d3a;
+	--deep: #0b222d;
+	--muted: #475d63;
+	--teal: #256461;
+	--cream: #f9f8f3;
+	--line: #dbe2dc;
+	--gold: #f0ce81;
+	--container: 1176px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--navy); background: var(--cream); font: 400 16px/1.8 "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-underline-offset: .22em; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #b37e1a; outline-offset: 4px; }
+h1, h2, h3, h4, p { margin: 0; }
+h2 { font-size: clamp(29px, 3.6vw, 44px); line-height: 1.45; letter-spacing: .015em; }
+h3 { font-size: 21px; line-height: 1.5; }
+.container { width: min(var(--container), calc(100% - 112px)); margin-inline: auto; }
+.skip-link { position: absolute; left: 1rem; top: 1rem; z-index: 10; padding: .5em 1em; background: white; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+.site-header { background: #fff; }
+.header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1.25; }
+.brand-name { font-weight: 900; letter-spacing: -.055em; font-size: 28px; }
+.brand-name span { color: var(--teal); }
+.brand-description { font-size: 10px; font-weight: 700; letter-spacing: .04em; margin-top: 4px; }
+.custom-logo-link img { width: auto; max-height: 82px; object-fit: contain; }
+.brand img { width: 82px; }
+.site-nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 44px); margin-left: auto; }
+.site-nav a { font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.site-nav a:hover { text-decoration: underline; }
+.button { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 52px; padding: 10px 19px; border: 1px solid transparent; border-radius: 4px; font: inherit; font-size: 14px; font-weight: 800; text-decoration: none; cursor: pointer; }
+.button span { font-size: 17px; line-height: 1; }
+.button-primary { color: var(--deep); background: var(--gold); }
+.button-primary:hover { background: #ffe0a0; }
+.header-cta { min-height: 42px; padding-block: 5px; margin-left: clamp(0px, 1.8vw, 22px); }
+.hero {
+	display: grid;
+	align-items: center;
+	min-height: clamp(535px, 48vw, 705px);
+	color: white;
+	background: linear-gradient(90deg, rgba(6, 27, 39, .95) 0%, rgba(6, 27, 39, .77) 37%, rgba(6, 27, 39, .16) 76%), url("assets/coastal-boat.webp") center center / cover no-repeat, #163744;
+}
+.hero-inner { padding-block: 76px; }
+.eyebrow { color: var(--teal); font: 700 12px/1.5 system-ui, sans-serif; letter-spacing: .16em; margin-bottom: 10px; }
+.hero-label { display: inline-flex; align-items: center; gap: 12px; color: #e7d6a4; font-size: 13px; letter-spacing: .10em; margin-bottom: 23px; }
+.hero-label::before { content: ""; width: 25px; height: 1px; background: var(--gold); }
+.hero h1 { font-size: clamp(39px, 5.0vw, 70px); line-height: 1.28; letter-spacing: .015em; font-weight: 850; }
+.hero-copy { color: #f0f5f3; margin-top: 22px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.9; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.button-outline { color: #fff; background: rgba(12, 36, 48, .25); border-color: rgba(255, 255, 255, .64); }
+.button-outline:hover { background: rgba(255, 255, 255, .15); }
+.overview { background: var(--navy); color: #f4f8f2; }
+.overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 23px; }
+.overview-grid > div { display: grid; gap: 3px; padding-left: clamp(18px, 4.2vw, 64px); border-left: 1px solid #4b6368; }
+.overview-grid > div:first-child { padding-left: 0; border: 0; }
+.overview-grid span { color: #bdcfcc; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+.overview-grid strong { font-size: clamp(15px, 2vw, 22px); line-height: 1.5; }
+.overview-grid b { color: var(--gold); font-size: 1.27em; }
+.section { padding-block: clamp(62px, 7.4vw, 110px); }
+.section-intro { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 32px; }
+.section-intro > p, .service-card p, .flow-grid p, .background-grid p:not(.eyebrow) { color: var(--muted); }
+.service-grid, .flow-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.service-card { border: 1px solid var(--line); border-radius: 6px; padding: clamp(22px, 3vw, 37px); background: #fff; }
+.service-icon { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 50%; color: var(--teal); background: #e9f1eb; font-size: 24px; margin-bottom: 23px; }
+.service-card p, .flow-grid p { font-size: 15px; margin-top: 12px; }
+.background { background: #eaf0ec; }
+.background-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(32px, 8vw, 115px); align-items: center; }
+.background-grid p:not(.eyebrow) { margin-top: 19px; }
+.source-links { display: grid; gap: 8px; padding: 0; margin: 24px 0 0; list-style: none; font-size: 13px; font-weight: 750; color: #1e5a57; }
+.eligibility { border: 1px solid #d7e1dc; border-radius: 6px; padding: clamp(24px, 3.4vw, 46px); background: #fff; }
+.eligibility ul { padding: 0; margin: 16px 0 0; list-style: none; }
+.eligibility li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.eligibility li:last-child { border-bottom: 0; }
+.eligibility li::before { content: "✓"; color: var(--teal); padding-right: 12px; }
+.flow-grid { margin: 32px 0 0; padding: 0; list-style: none; counter-reset: step; }
+.flow-grid li { border-top: 1px solid #9bafaa; padding: 20px 12px 0 0; counter-increment: step; }
+.flow-grid li::before { content: "0" counter(step); display: block; font-size: 14px; color: var(--teal); font-weight: 800; letter-spacing: .1em; margin-bottom: 10px; }
+.contact { background: var(--navy); color: #fff; }
+.contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(28px, 6vw, 78px); }
+.contact .eyebrow { color: var(--gold); }
+.contact-grid > div:first-child > p:not(.eyebrow) { margin: 16px 0 21px; color: #d7e6e2; }
+.contact-email { color: #ffe3a0; }
+.contact-panel { background: #fff; color: var(--navy); border-radius: 6px; padding: clamp(20px, 3.7vw, 45px); }
+.contact-panel > h3 { margin-bottom: 20px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 18px; }
+.form-grid > p { min-width: 0; }
+.form-wide { grid-column: 1 / -1; }
+.form-grid label { font-size: 14px; font-weight: 700; }
+.form-grid input:not([type=submit]), .form-grid textarea { width: 100%; font: inherit; font-weight: 400; color: var(--navy); padding: 9px 10px; border: 1px solid #8b9f9c; background: #fbfcfa; border-radius: 3px; margin-top: 4px; }
+.form-grid textarea { min-height: 116px; resize: vertical; }
+.form-grid .required { color: #824618; font-size: 11px; margin-left: 6px; }
+.privacy { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 13px; color: var(--muted); font-size: 13px; }
+.privacy h4 { color: var(--navy); }
+.site-footer { background: var(--deep); color: #d9e4df; padding: 30px 0; }
+.footer-inner, .footer-right { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; }
+.footer-brand { color: white; font-size: 22px; font-weight: 850; text-decoration: none; }
+.operator-details { margin: 10px 0 0; }
+.operator-details > div { display: flex; flex-wrap: wrap; column-gap: 9px; }
+.operator-details dt { font-weight: 700; }
+.operator-details dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 880px) {
+	.container { width: calc(100% - 56px); }
+	.hero { min-height: 555px; }
+	.background-grid { grid-template-columns: 1.15fr 1fr; }
+}
+@media (max-width: 670px) {
+	.container { width: calc(100% - 36px); }
+	.header-inner { min-height: 66px; flex-wrap: wrap; gap: 0 13px; padding-top: 9px; }
+	.site-nav { order: 3; width: 100%; margin: 4px 0 0; justify-content: space-between; gap: 8px; padding: 8px 0 9px; border-top: 1px solid var(--line); }
+	.site-nav a { font-size: 12px; }
+	.brand-name { font-size: 25px; }
+	.custom-logo-link img { max-height: 60px; }
+	.brand img { width: 60px; }
+	.header-cta { gap: 8px; padding-inline: 11px; font-size: 12px; min-height: 38px; }
+	.hero {
+		min-height: 495px;
+		background-image: linear-gradient(90deg, rgba(6, 27, 39, .92), rgba(6, 27, 39, .46)), url("assets/coastal-boat.webp");
+		background-position: center, 63% center;
+	}
+	.hero-inner { padding-block: 64px; }
+	.hero h1 { font-size: clamp(32px, 8vw, 49px); }
+	.desktop-break { display: none; }
+	.overview-grid { padding-block: 14px; }
+	.overview-grid > div { padding-left: 8px; }
+	.overview-grid span { font-size: 9px; }
+	.overview-grid strong { font-size: 12px; }
+	.section-intro { display: block; }
+	.section-intro > p { margin-top: 12px; }
+	.service-grid, .flow-grid, .background-grid, .contact-grid { grid-template-columns: 1fr; }
+	.flow-grid { gap: 21px; }
+	.footer-inner { align-items: start; }
+	.footer-right { display: grid; gap: 6px; text-align: right; }
+}
+@media (max-width: 390px) {
+	.hero-actions .button { width: 100%; }
+	.form-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}
