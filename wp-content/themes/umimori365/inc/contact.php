@@ -47,7 +47,7 @@ function umimori365_submit_contact() {
 	$token = umimori365_m365_token( $settings );
 	$recipient = 'info@c365.jp';
 	if ( ! $token || ! umimori365_m365_send(
-		$settings['sender'], $token, $recipient, $email, '【海守365】無料相談・お問い合わせ',
+		$settings, $token, $recipient, $email, '【海守365】無料相談・お問い合わせ',
 		"お名前: $name\n会社名・屋号: $company\nメールアドレス: $email\n\nご相談内容\n$message"
 	) ) {
 		umimori365_contact_result( 'failed' );
@@ -55,7 +55,7 @@ function umimori365_submit_contact() {
 	set_transient( $email_limit, 1, MINUTE_IN_SECONDS );
 
 	$confirmed = umimori365_m365_send(
-		$settings['sender'], $token, $email, $recipient, '【海守365】お問い合わせを受け付けました',
+		$settings, $token, $email, $recipient, '【海守365】お問い合わせを受け付けました',
 		"海守365へお問い合わせいただき、ありがとうございます。\n\n内容を確認のうえ、担当者からご連絡いたします。\n\n株式会社NEXUS 海守365運航管理センター"
 	);
 	umimori365_contact_result( $confirmed ? 'sent' : 'received' );

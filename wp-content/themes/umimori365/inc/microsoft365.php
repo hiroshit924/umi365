@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
 
 function umimori365_m365_settings() {
 	return wp_parse_args( get_option( 'umimori365_m365', array() ), array(
-		'tenant' => '', 'client' => '', 'sender' => '', 'secret' => '',
+		'tenant' => '', 'client' => '', 'sender' => '', 'mailbox_id' => '', 'secret' => '',
 	) );
 }
 
@@ -24,16 +24,27 @@ function umimori365_m365_admin() {
 	<div class="wrap">
 		<h1>海守365 Microsoft 365</h1>
 		<?php settings_errors( 'umimori365_m365' ); ?>
-		<p>問い合わせフォームは、下記のメールボックスから運営側への通知と相談者への受付メールを送信します。</p>
+		<p>問い合わせフォームは、指定した差出人アドレスで、運営側への通知と相談者への受付メールを送信します。</p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 			<?php settings_fields( 'umimori365_m365' ); ?>
 			<table class="form-table" role="presentation">
-				<?php foreach ( array( 'tenant' => 'テナント ID', 'client' => 'アプリケーション ID', 'sender' => '送信元メールボックス' ) as $field => $label ) : ?>
+				<?php foreach ( array( 'tenant' => 'テナント ID', 'client' => 'アプリケーション ID', 'sender' => '差出人アドレス（From）' ) as $field => $label ) : ?>
 					<tr>
 						<th scope="row"><label for="umimori-<?php echo esc_attr( $field ); ?>"><?php echo esc_html( $label ); ?></label></th>
-						<td><input id="umimori-<?php echo esc_attr( $field ); ?>" name="umimori365_m365[<?php echo esc_attr( $field ); ?>]" value="<?php echo esc_attr( $settings[ $field ] ); ?>" class="regular-text" required></td>
+						<td><input id="umimori-<?php echo esc_attr( $field ); ?>" name="umimori365_m365[<?php echo esc_attr( $field ); ?>]" value="<?php echo esc_attr( $settings[ $field ] ); ?>" class="regular-text" type="<?php echo 'sender' === $field ? 'email' : 'text'; ?>" required>
+							<?php if ( 'sender' === $field ) : ?>
+								<p class="description">Microsoft 365で送信を許可したメールボックスのメールアドレスを入力してください。</p>
+							<?php endif; ?>
+						</td>
 					</tr>
 				<?php endforeach; ?>
+				<tr>
+					<th scope="row"><label for="umimori-mailbox-id">送信元メールボックスのオブジェクト ID（任意）</label></th>
+					<td>
+						<input id="umimori-mailbox-id" name="umimori365_m365[mailbox_id]" value="<?php echo esc_attr( $settings['mailbox_id'] ); ?>" class="regular-text">
+						<p class="description">差出人アドレスと Microsoft 365 のサインイン名が異なる場合は、送信元メールボックスに対応する Entra ユーザーのオブジェクト ID を指定してください。</p>
+					</td>
+				</tr>
 				<tr>
 					<th scope="row"><label for="umimori-secret">クライアント シークレットの値</label></th>
 					<td>
@@ -56,13 +67,17 @@ add_action( 'admin_init', static function () {
 function umimori365_m365_sanitize( $input ) {
 	$old = umimori365_m365_settings();
 	$new = array();
-	foreach ( array( 'tenant', 'client', 'sender', 'secret' ) as $field ) {
+	foreach ( array( 'tenant', 'client', 'sender', 'mailbox_id', 'secret' ) as $field ) {
 		$new[ $field ] = isset( $input[ $field ] ) && is_string( $input[ $field ] ) ? trim( $input[ $field ] ) : '';
 	}
 
 	$uuid = '/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/iD';
 	if ( ! preg_match( $uuid, $new['tenant'] ) || ! preg_match( $uuid, $new['client'] ) || ! is_email( $new['sender'] ) ) {
 		add_settings_error( 'umimori365_m365', 'invalid', 'テナントID、アプリケーションID、送信元メールアドレスをご確認ください。' );
+		return $old;
+	}
+	if ( '' !== $new['mailbox_id'] && ! preg_match( $uuid, $new['mailbox_id'] ) ) {
+		add_settings_error( 'umimori365_m365', 'mailbox-id', '送信元メールボックスのオブジェクト ID をご確認ください。' );
 		return $old;
 	}
 	if ( ! function_exists( 'sodium_crypto_secretbox' ) ) {
@@ -112,14 +127,17 @@ function umimori365_m365_token( $settings ) {
 	return isset( $data['access_token'] ) && is_string( $data['access_token'] ) ? $data['access_token'] : '';
 }
 
-function umimori365_m365_send( $sender, $token, $to, $reply_to, $subject, $body ) {
-	$response = wp_remote_post( 'https://graph.microsoft.com/v1.0/users/' . rawurlencode( $sender ) . '/sendMail', array(
+function umimori365_m365_send( $settings, $token, $to, $reply_to, $subject, $body ) {
+	$sender = $settings['sender'];
+	$mailbox = $settings['mailbox_id'] ?: $sender;
+	$response = wp_remote_post( 'https://graph.microsoft.com/v1.0/users/' . rawurlencode( $mailbox ) . '/sendMail', array(
 		'timeout'     => 10,
 		'redirection' => 0,
 		'headers'     => array( 'Authorization' => 'Bearer ' . $token, 'Content-Type' => 'application/json' ),
 		'body'        => wp_json_encode( array(
 			'message' => array(
 				'subject'      => $subject,
+				'from'         => array( 'emailAddress' => array( 'address' => $sender ) ),
 				'body'         => array( 'contentType' => 'Text', 'content' => $body ),
 				'toRecipients' => array( array( 'emailAddress' => array( 'address' => $to ) ) ),
 				'replyTo'      => array( array( 'emailAddress' => array( 'address' => $reply_to ) ) ),
