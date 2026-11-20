@@ -44,23 +44,7 @@
 				</article>
 			</div>
 
-			<figure class="service-diagram" aria-labelledby="diagram-title">
-				<figcaption><h3 id="diagram-title">海守365の運航支援の仕組み</h3></figcaption>
-				<ol class="diagram-roles">
-					<li>
-						<h4>小型船舶の事業者・オーナー</h4>
-						<p>船舶や運航計画を共有し、運航前後の報告や緊急時の連絡を行います。</p>
-					</li>
-					<li>
-						<h4>海守365 運航管理センター</h4>
-						<p>登録手続きや船舶点検を支援し、日々の海況確認・運航可否の連絡・緊急時対応を担います。</p>
-					</li>
-					<li>
-						<h4>行政・海事代理士・保険会社など</h4>
-						<p>海守365が関係先と連携し、必要な申請・報告や保険の手配を進めます。</p>
-					</li>
-				</ol>
-			</figure>
+			<?php get_template_part( 'template-parts/operations-chart' ); ?>
 		</div>
 	</section>
 
