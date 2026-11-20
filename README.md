@@ -2,6 +2,10 @@
 
 小型船舶の安全運航管理サービス「海守365」の紹介・利用相談サイトです。公開先は https://umimori.c365.jp です。
 
+## テーマのダウンロード
+
+[WordPressテーマ ZIP](https://github.com/hiroshit924/umi365/raw/refs/heads/main/downloads/umimori365-theme-1.0.4.zip) をダウンロードして、WordPress管理画面の **外観 → テーマ → 新しいテーマを追加 → テーマのアップロード** からインストールできます。
+
 ## ローカルで起動
 
 Docker Compose、curl、OpenSSL が必要です。
