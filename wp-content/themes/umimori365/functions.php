@@ -18,6 +18,9 @@ add_action( 'after_setup_theme', static function () {
 
 add_action( 'wp_enqueue_scripts', static function () {
 	wp_enqueue_style( 'umimori365', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+	if ( is_front_page() ) {
+		wp_enqueue_script( 'umimori365-contact', get_theme_file_uri( '/assets/contact-form.js' ), array(), wp_get_theme()->get( 'Version' ), true );
+	}
 } );
 
 add_action( 'wp_head', static function () {

@@ -7,7 +7,25 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_post_umimori365_contact', 'umimori365_submit_contact' );
 add_action( 'admin_post_nopriv_umimori365_contact', 'umimori365_submit_contact' );
 
+function umimori365_contact_message( $result ) {
+	$messages = array(
+		'sent'     => 'お問い合わせを受け付けました。入力されたアドレスに受付メールをお送りしました。',
+		'received' => 'お問い合わせを受け付けました。受付メールの送信は完了しませんでした。担当者からのご連絡をお待ちください。',
+		'failed'   => '送信できませんでした。時間をおいて再度お試しください。',
+		'invalid'  => '入力内容をご確認のうえ、もう一度送信してください。',
+		'limit'    => '続けて送信されました。時間をおいて再度お試しください。',
+	);
+	return $messages[ $result ] ?? '';
+}
+
 function umimori365_contact_result( $result ) {
+	if ( '1' === ( $_POST['umimori_async'] ?? '' ) ) {
+		wp_send_json( array(
+			'result'  => $result,
+			'message' => umimori365_contact_message( $result ),
+		) );
+	}
+
 	wp_safe_redirect( add_query_arg( 'consultation', $result, home_url( '/' ) ) . '#contact-form', 303 );
 	exit;
 }
