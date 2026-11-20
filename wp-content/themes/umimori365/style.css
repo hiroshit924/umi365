@@ -1,7 +1,7 @@
 /*
 Theme Name: 海守365
 Description: 小型船舶の安全運航管理サービス 海守365の公式サイト用テーマ。
-Version: 1.2.2
+Version: 1.3.0
 Text Domain: umimori365
 */
 :root {
@@ -331,4 +331,76 @@ h3 { font-size: 21px; line-height: 1.5; }
 }
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
+}
+
+.site-nav a[aria-current="page"] { color: var(--teal); text-decoration: underline; }
+.pricing-hero {
+	display: grid;
+	align-items: center;
+	min-height: 340px;
+	padding: 50px 0;
+	background: linear-gradient(90deg, #0c2d37f5, #123543bb 49%, #173c4240),
+		url("assets/plans-harbor.webp") center 58% / cover no-repeat, #153742;
+	color: #fff;
+}
+.pricing-home { color: #e9d69d; font-size: 14px; font-weight: 700; }
+.pricing-hero h1 { margin-top: 15px; font-size: clamp(40px, 6vw, 74px); line-height: 1.18; }
+.pricing-hero p { margin-top: 14px; color: #edf4f3; font-size: clamp(15px, 2vw, 20px); }
+.pricing-options {
+	padding: clamp(44px, 6.5vw, 84px) 0;
+	background: radial-gradient(ellipse at 50% 0, #e6f1e9, transparent 65%), var(--cream);
+}
+.pricing-intro { margin-bottom: 28px; text-align: center; }
+.pricing-intro p { margin-top: 8px; color: var(--muted); }
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 20px;
+}
+.pricing-card {
+	display: flex;
+	flex-direction: column;
+	padding: clamp(20px, 2.45vw, 32px);
+	border: 1px solid #d4e2da;
+	border-top: 4px solid #7eaaa0;
+	border-radius: 22px;
+	background: #fff;
+	box-shadow: 0 10px 22px #113a3212;
+}
+.pricing-card:nth-child(2) {
+	border-color: #d8b970;
+	background: linear-gradient(150deg, #fffaf0, #fff 67%);
+	box-shadow: 0 12px 26px #7253231c;
+}
+.pricing-card:nth-child(3) { border-top-color: #3a7282; }
+.pricing-card-icon {
+	display: grid;
+	place-items: center;
+	width: 56px;
+	height: 56px;
+	margin-bottom: 13px;
+	border-radius: 50%;
+	background: #e5f2eb;
+}
+.pricing-card:nth-child(2) .pricing-card-icon { background: #f6e9c8; }
+.pricing-card:nth-child(3) .pricing-card-icon { background: #e5eef4; }
+.pricing-scope { margin-top: 6px; color: var(--teal); font-weight: 700; font-size: 14px; }
+.pricing-amount, .pricing-quote { margin-top: 22px; line-height: 1.2; font-weight: 800; color: #153f41; }
+.pricing-amount strong { font-size: clamp(44px, 5.4vw, 66px); font-variant-numeric: tabular-nums; }
+.pricing-amount span, .pricing-voyages { color: var(--muted); font-size: 14px; }
+.pricing-voyages { margin-top: 3px; }
+.pricing-quote { font-size: clamp(24px, 3.2vw, 36px); }
+.pricing-custom-description { margin: 14px 0 26px; color: var(--muted); font-size: 15px; }
+.pricing-details { margin: 18px 0 23px; font-size: 14px; }
+.pricing-details > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px 8px; padding: 9px 0; border-top: 1px solid var(--line); }
+.pricing-details dt { color: var(--muted); }
+.pricing-details dd { margin: 0; font-weight: 700; }
+.pricing-card-cta { width: 100%; margin-top: auto; padding-inline: 13px; gap: 6px; color: #174743; background: #edf6f0; }
+.pricing-card-cta:hover { background: #dceee3; }
+.pricing-card:nth-child(2) .pricing-card-cta { color: var(--deep); background: var(--gold); }
+.pricing-card:nth-child(2) .pricing-card-cta:hover { background: #ffe0a0; }
+@media (max-width: 830px) {
+	.pricing-grid { grid-template-columns: 1fr; max-width: 530px; margin-inline: auto; }
+	.pricing-intro { text-align: left; max-width: 530px; margin-inline: auto; }
+	.pricing-hero { min-height: 290px; }
 }

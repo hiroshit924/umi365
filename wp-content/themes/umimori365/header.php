@@ -15,6 +15,10 @@
 			<a href="<?php echo esc_url( home_url( '/#service' ) ); ?>">サービス</a>
 			<a href="<?php echo esc_url( home_url( '/#background' ) ); ?>">事業の背景</a>
 			<a href="<?php echo esc_url( home_url( '/#flow' ) ); ?>">ご利用の流れ</a>
+			<?php $pricing_url = umimori365_pricing_page_url(); ?>
+			<?php if ( $pricing_url ) : ?>
+				<a href="<?php echo esc_url( $pricing_url ); ?>"<?php if ( is_page( (int) get_option( 'umimori365_pricing_page_id' ) ) ) : ?> aria-current="page"<?php endif; ?>>プラン・料金</a>
+			<?php endif; ?>
 		</nav>
 		<a class="button button-primary header-cta" href="<?php echo esc_url( home_url( '/#contact' ) ); ?>">無料相談 <span aria-hidden="true">↗</span></a>
 	</div>
