@@ -11,7 +11,8 @@ if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
 }
 
 $form_id = (int) get_option( 'umimori365_contact_form_id' );
-if ( ! $form_id || ! wpcf7_contact_form( $form_id ) ) {
+$contact_form = $form_id ? wpcf7_contact_form( $form_id ) : null;
+if ( ! $contact_form ) {
 	$contact_form = WPCF7_ContactForm::get_template(
 		array( 'title' => '海守365 利用相談・お問い合わせ', 'locale' => 'ja' )
 	);
@@ -48,8 +49,7 @@ FORM;
 	$properties['messages'] = array_merge(
 		$properties['messages'],
 		array(
-			'mail_sent_ok' => 'お問い合わせを受け付けました。ご入力いただいたメールアドレスに返信いたします。',
-			'mail_sent_ng' => '送信できませんでした。時間をおいて再度お試しいただくか、info@c365.jp へご連絡ください。',
+			'mail_sent_ok' => 'お問い合わせを受け付けました。',
 			'validation_error' => '入力内容をご確認ください。',
 			'invalid_required' => 'この項目を入力してください。',
 			'invalid_too_long' => '文字数が上限を超えています。',
@@ -57,13 +57,37 @@ FORM;
 			'spam' => '送信できませんでした。時間をおいて再度お試しください。',
 		)
 	);
-	$contact_form->set_properties( $properties );
-	$form_id = $contact_form->save();
-
-	if ( ! $form_id ) {
-		WP_CLI::error( '問い合わせフォームを保存できませんでした。' );
-	}
-	update_option( 'umimori365_contact_form_id', $form_id );
+} else {
+	$properties = $contact_form->get_properties();
 }
+
+$email_fields = WPCF7_FormTagsManager::get_instance()->filter(
+	$properties['form'],
+	array( 'name' => 'your-email', 'type' => 'email*' )
+);
+if ( ! $email_fields ) {
+	WP_CLI::error( 'フォームに必須メールアドレス欄 [email* your-email] を設定してください。' );
+}
+
+$properties['mail']['recipient'] = 'info@c365.jp';
+$properties['messages']['mail_sent_ng'] = '送信できませんでした。時間をおいて再度フォームからお試しください。';
+$properties['mail_2'] = array(
+	'active'             => true,
+	'recipient'          => '[your-email]',
+	'sender'             => $properties['mail']['sender'],
+	'subject'            => '【海守365】お問い合わせを受け付けました',
+	'additional_headers' => 'Reply-To: info@c365.jp',
+	'body'               => "海守365へお問い合わせいただき、ありがとうございます。\n\n無料相談のお問い合わせを受け付けました。内容を確認のうえ、担当者からご連絡いたします。\n\n株式会社NEXUS 海守365運航管理センター",
+	'attachments'        => '',
+	'use_html'           => false,
+	'exclude_blank'      => false,
+);
+
+$contact_form->set_properties( $properties );
+$form_id = $contact_form->save();
+if ( ! $form_id ) {
+	WP_CLI::error( '問い合わせフォームを保存できませんでした。' );
+}
+update_option( 'umimori365_contact_form_id', $form_id );
 
 WP_CLI::success( '海守365の問い合わせフォーム ID: ' . $form_id );

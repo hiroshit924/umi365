@@ -114,7 +114,7 @@
 				<p class="eyebrow">CONTACT</p>
 				<h2 id="contact-title">まずは無料で<br>ご相談ください。</h2>
 				<p>登録手続き、費用、開業時期など、<br class="desktop-break">気になることをお聞かせください。</p>
-				<a class="contact-email" href="mailto:info@c365.jp">info@c365.jp</a>
+				<p>フォームから送信すると、入力したメールアドレスに受付メールをお送りします。</p>
 			</div>
 			<div class="contact-panel">
 				<h3>利用相談・お問い合わせ</h3>
@@ -123,7 +123,7 @@
 				if ( function_exists( 'wpcf7_contact_form' ) && $form_id && wpcf7_contact_form( $form_id ) ) {
 					echo do_shortcode( sprintf( '[contact-form-7 id="%d"]', $form_id ) );
 				} else {
-					echo '<p>お問い合わせは <a href="mailto:info@c365.jp">info@c365.jp</a> までお送りください。</p>';
+					echo '<p>ただいま問い合わせフォームをご利用いただけません。時間をおいて再度お試しください。</p>';
 				}
 				?>
 				<section id="privacy" class="privacy" aria-labelledby="privacy-title">

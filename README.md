@@ -4,7 +4,7 @@
 
 ## テーマのダウンロード
 
-[WordPressテーマ ZIP](https://github.com/hiroshit924/umi365/raw/refs/heads/main/downloads/umimori365-theme-1.1.3.zip) をダウンロードして、WordPress管理画面の **外観 → テーマ → 新しいテーマを追加 → テーマのアップロード** からインストールできます。
+[WordPressテーマ ZIP](https://github.com/hiroshit924/umi365/raw/refs/heads/main/downloads/umimori365-theme-1.1.4.zip) をダウンロードして、WordPress管理画面の **外観 → テーマ → 新しいテーマを追加 → テーマのアップロード** からインストールできます。
 
 ## ローカルで起動
 
@@ -30,8 +30,8 @@ Docker Compose、curl、OpenSSL が必要です。
    UMIMORI_MAIL_FROM=wordpress@umimori.c365.jp wp eval-file /path/to/scripts/provision-site.php
    ```
 
-   問い合わせフォームが作成され、トップページに表示されます。フォームの宛先は `info@c365.jp`、返信先は利用者の入力したメールアドレスです。作成済みのフォームは再実行しても維持されます。送信元などを後から変更する場合は **お問い合わせ → コンタクトフォーム → 海守365 利用相談・お問い合わせ → メール** で編集してください。
-5. ホスティングの送信機能または認証済み SMTP を設定し、本番フォームから試験送信して `info@c365.jp` への着信を確認します。ローカルのメール捕捉用ファイル `scripts/local-mail.php` は本番に配置しません。
+   問い合わせフォームがトップページに表示されます。送信時は、Contact Form 7 の **メール** が `info@c365.jp` に相談内容を送り、**メール (2)** が入力されたメールアドレスに受付メールを送ります。既存サイトの更新時も、このスクリプトを再実行してください。既存フォームの入力項目を維持したまま、通知の宛先と受付メールの設定を更新します。
+5. ホスティングの送信機能または認証済み SMTP を設定し、本番フォームから試験送信して、`info@c365.jp` への通知と入力したアドレスへの受付メールの着信を確認します。ローカルのメール捕捉用ファイル `scripts/local-mail.php` は本番に配置しません。
 
 ## 事業番号の表示
 
